@@ -6,6 +6,7 @@ use Filament\Facades\Filament;
 use Filament\Panel;
 use Filament\PanelProvider;
 use Filament\Pages; 
+use App\Filament\Resources\QuestionResource;
 
 class AdminPanelProvider extends PanelProvider
 {
@@ -21,6 +22,9 @@ class AdminPanelProvider extends PanelProvider
                 'primary' => '#7c3aed',
             ])
             ->discoverResources(in: app_path('Filament/Resources'), for: 'App\\Filament\\Resources')
+            ->resources([
+                QuestionResource::class,
+            ])
             ->discoverPages(in: app_path('Filament/Pages'), for: 'App\\Filament\\Pages')
             ->discoverClusters(in: app_path('Filament/Clusters'), for: 'App\\Filament\\Clusters')
             ->plugins([
