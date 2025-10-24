@@ -7,6 +7,8 @@ use Filament\Panel;
 use Filament\PanelProvider;
 use Filament\Pages; 
 use App\Filament\Resources\QuestionResource;
+use App\Filament\Resources\BlogPostResource;
+use App\Filament\Resources\BlogCategoryResource;
 
 class AdminPanelProvider extends PanelProvider
 {
@@ -24,6 +26,8 @@ class AdminPanelProvider extends PanelProvider
             ->discoverResources(in: app_path('Filament/Resources'), for: 'App\\Filament\\Resources')
             ->resources([
                 QuestionResource::class,
+                BlogPostResource::class,
+                BlogCategoryResource::class,
             ])
             ->discoverPages(in: app_path('Filament/Pages'), for: 'App\\Filament\\Pages')
             ->discoverClusters(in: app_path('Filament/Clusters'), for: 'App\\Filament\\Clusters')
