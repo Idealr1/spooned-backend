@@ -17,6 +17,11 @@ class BlogCategoryResource extends Resource
     protected static \BackedEnum|string|null $navigationIcon = 'heroicon-o-tag';
     protected static ?string $navigationLabel = 'Blog Categories';
 
+    public static function shouldRegisterNavigation(): bool
+    {
+        return auth()->user()?->role === 'admin';
+    }
+
     public static function form(Schema $schema): Schema
     {
         return $schema->schema([

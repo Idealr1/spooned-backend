@@ -18,6 +18,12 @@ class BlogPostResource extends Resource
     protected static \BackedEnum|string|null $navigationIcon = 'heroicon-o-document-text';
     protected static ?string $navigationLabel = 'Blog Posts';
 
+    public static function shouldRegisterNavigation(): bool
+    {
+        $role = auth()->user()?->role;
+        return in_array($role, ['admin', 'user'], true);
+    }
+
     public static function form(Schema $schema): Schema
     {
         return $schema->schema([

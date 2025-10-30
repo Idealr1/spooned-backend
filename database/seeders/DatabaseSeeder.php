@@ -17,8 +17,10 @@ class DatabaseSeeder extends Seeder
         if (!User::where('email', 'admin@spooned.local')->exists()) {
             User::create([
                 'name' => 'Admin',
+                'last_name' => 'User',
                 'email' => 'admin@spooned.local',
                 'password' => Hash::make('Admin123!'),
+                'role' => 'admin',
             ]);
         }
 

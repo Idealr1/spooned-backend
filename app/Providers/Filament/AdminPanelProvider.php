@@ -9,6 +9,7 @@ use Filament\Pages;
 use App\Filament\Resources\QuestionResource;
 use App\Filament\Resources\BlogPostResource;
 use App\Filament\Resources\BlogCategoryResource;
+use App\Filament\Resources\UserResource;
 
 class AdminPanelProvider extends PanelProvider
 {
@@ -28,6 +29,7 @@ class AdminPanelProvider extends PanelProvider
                 QuestionResource::class,
                 BlogPostResource::class,
                 BlogCategoryResource::class,
+                UserResource::class,
             ])
             ->discoverPages(in: app_path('Filament/Pages'), for: 'App\\Filament\\Pages')
             ->discoverClusters(in: app_path('Filament/Clusters'), for: 'App\\Filament\\Clusters')
