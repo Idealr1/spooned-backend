@@ -14,6 +14,7 @@ class BlogPost extends Model
 		'thumbnail_path',
 		'detail_images',
 		'description',
+		'user_id',
 	];
 
 	protected $casts = [
@@ -23,6 +24,11 @@ class BlogPost extends Model
 	public function categories(): BelongsToMany
 	{
 		return $this->belongsToMany(BlogCategory::class, 'blog_category_post');
+	}
+
+	public function author()
+	{
+		return $this->belongsTo(User::class, 'user_id');
 	}
 }
 

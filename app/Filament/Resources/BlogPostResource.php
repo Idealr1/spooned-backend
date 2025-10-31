@@ -27,6 +27,9 @@ class BlogPostResource extends Resource
     public static function form(Schema $schema): Schema
     {
         return $schema->schema([
+            Forms\Components\Hidden::make('user_id')
+                ->dehydrateStateUsing(fn () => auth()->id())
+                ->dehydrated(fn (string $context) => $context === 'create'),
             Forms\Components\TextInput::make('title')->required()->columnSpanFull(),
             Forms\Components\TextInput::make('slug')->required()->unique(ignoreRecord: true),
             Forms\Components\Select::make('locale')->required()->options([

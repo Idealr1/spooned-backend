@@ -13,7 +13,9 @@ class BlogController extends Controller
     {
         $locale = $request->query('locale', 'en');
         $category = $request->query('category');
-        $query = BlogPost::with('categories')->where('locale', $locale)->orderByDesc('updated_at');
+        $query = BlogPost::with(['categories', 'author:id,name,last_name,email,avatar_path'])
+            ->where('locale', $locale)
+            ->orderByDesc('updated_at');
         if ($category) {
             $query->whereHas('categories', fn ($q) => $q->where('slug', $category));
         }
@@ -23,7 +25,10 @@ class BlogController extends Controller
     public function show(Request $request, string $slug)
     {
         $locale = $request->query('locale', 'en');
-        $post = BlogPost::with('categories')->where('locale', $locale)->where('slug', $slug)->firstOrFail();
+        $post = BlogPost::with(['categories', 'author:id,name,last_name,email,avatar_path'])
+            ->where('locale', $locale)
+            ->where('slug', $slug)
+            ->firstOrFail();
         return response()->json($post);
     }
 
